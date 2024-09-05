@@ -84,16 +84,16 @@ def sum_sub_grid(grid, val):
     surrounding the parameter val in the grid
     if val is out of bounds, returns 0
     """
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
+    row, col = -1, -1
+    length = len(grid)
+    for i in range(length):
+        for j in range(length):
             if grid[i][j] == val:
-                row = i
-                col = j
-                print('found')
+                row, col = i, j
                 break
-        break
-    else:
-        return 0  # val is out of bounds
+    
+    if row == -1 and col == -1:
+        return 0
 
     # Calculate the sum of the numbers surrounding val
     total_sum = 0
@@ -103,9 +103,6 @@ def sum_sub_grid(grid, val):
                 total_sum += grid[i][j]
 
     return total_sum - val
-
-
-
 
 
 def main():
