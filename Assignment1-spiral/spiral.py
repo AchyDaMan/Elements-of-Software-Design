@@ -2,16 +2,15 @@
   File: spiral.py
   Description:
 
-  Student Name:
-  Student UT EID:
+  Student Name: Achintya Yedavalli
+  Student UT EID: asy397
 
-  Partner Name:
-  Partner UT EID:
+  Partner Name: I have a coding buddy but we didn't work on this together
 
   Course Name: CS 313E
-  Unique Number: 
-  Date Created:
-  Date Last Modified:
+  Unique Number: 50165
+  Date Created: 8/28/24
+  Date Last Modified: 9/5/24
 
  Input: n is an odd integer between 1 and 100
  Output: returns a 2-D list representing a spiral
@@ -32,10 +31,46 @@ import math
 
 
 def create_spiral(dim):
-    """Creates a Spiral given a dimension for the spiral dimeter"""
+    li = [[0 for i in range(dim)] for j in range(dim)]
+        
+    i = dim//2
+    j = dim//2
 
-    # ADD YOUR CODE HERE  
-  
+    steps = ['right_step', 'down_step', 'left_step', 'up_step']
+
+    step_count = 1
+    step_to_do = 0
+    # for each number
+    li[i][j] = 1
+    n = 2
+    while n < (dim*dim) + 1:
+        # going throughn the step pattern
+        for p in range(step_count):
+            if steps[step_to_do] == 'right_step':
+                # a right step involves adding 1 to j
+                j += 1
+            elif steps[step_to_do] == 'down_step':    
+                # a down step involves adding 1 to i
+                i += 1
+            elif steps[step_to_do] == 'left_step':
+                # a down step involves subtracting 1 from j
+                j -= 1
+            elif steps[step_to_do] == 'up_step':
+                # am up step involves subtracting 1 from i
+                i -= 1
+
+            li[i][j] = n
+            n += 1
+            if n >= (dim * dim) + 1:
+                break
+            
+        step_to_do += 1
+        # reset it to beginning when done
+        if step_to_do == 4:
+            step_to_do = 0
+        if steps[step_to_do] == 'left_step' or steps[step_to_do] == 'right_step':
+            step_count += 1
+    return li
 
 
 
@@ -49,11 +84,25 @@ def sum_sub_grid(grid, val):
     surrounding the parameter val in the grid
     if val is out of bounds, returns 0
     """
-    
-    # ADD YOUR CODE HERE  
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j] == val:
+                row = i
+                col = j
+                print('found')
+                break
+        break
+    else:
+        return 0  # val is out of bounds
 
+    # Calculate the sum of the numbers surrounding val
+    total_sum = 0
+    for i in range(row - 1, row + 2):
+        for j in range(col - 1, col + 2):
+            if 0 <= i < len(grid) and 0 <= j < len(grid[i]):
+                total_sum += grid[i][j]
 
-    return # ADD YOUR CODE HERE  
+    return total_sum - val
 
 
 
@@ -64,17 +113,14 @@ def main():
     A Main Function to read the data from input,
     run the program and print to the standard output.
     """
-
     # read the dimension of the grid and value from input file
     dim = int(input())
-
     # test that dimension is odd
     if dim % 2 == 0:
         dim += 1
-
     # create a 2-D list representing the spiral
     mat = create_spiral(dim)
-
+    
     while True:
         try:
             sum_val = int(input())
@@ -86,7 +132,6 @@ def main():
             print(adj_sum)
         except EOFError:
             break
-
 
 if __name__ == "__main__":
     main()
