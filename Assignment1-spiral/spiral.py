@@ -18,7 +18,7 @@
 
 def create_spiral(n):
     print("REMOVE THIS PRINT AND ADD YOUR CODE")
-    
+
  Input: spiral is a 2-D list and n is an integer
  Output: returns an integer that is the sum of the
          numbers adjacent to n in the spiral
@@ -27,12 +27,10 @@ def sum_adjacent_numbers(spiral, n):
     print("REMOVE THIS PRINT AND ADD YOUR CODE")
 """
 
-import math
-
 
 def create_spiral(dim):
-    li = [[0 for i in range(dim)] for j in range(dim)]
-        
+    spiral = [[0 for i in range(dim)] for j in range(dim)]
+
     i = dim//2
     j = dim//2
 
@@ -41,15 +39,15 @@ def create_spiral(dim):
     step_count = 1
     step_to_do = 0
     # for each number
-    li[i][j] = 1
-    n = 2
-    while n < (dim*dim) + 1:
+    spiral[i][j] = 1
+    number = 2
+    while number < (dim*dim) + 1:
         # going throughn the step pattern
-        for p in range(step_count):
+        for _ in range(step_count):
             if steps[step_to_do] == 'right_step':
                 # a right step involves adding 1 to j
                 j += 1
-            elif steps[step_to_do] == 'down_step':    
+            elif steps[step_to_do] == 'down_step':
                 # a down step involves adding 1 to i
                 i += 1
             elif steps[step_to_do] == 'left_step':
@@ -59,19 +57,18 @@ def create_spiral(dim):
                 # am up step involves subtracting 1 from i
                 i -= 1
 
-            li[i][j] = n
-            n += 1
-            if n >= (dim * dim) + 1:
+            spiral[i][j] = number
+            number += 1
+            if number >= (dim * dim) + 1:
                 break
-            
+
         step_to_do += 1
         # reset it to beginning when done
         if step_to_do == 4:
             step_to_do = 0
         if steps[step_to_do] == 'left_step' or steps[step_to_do] == 'right_step':
             step_count += 1
-    return li
-
+    return spiral
 
 
 def sum_sub_grid(grid, val):
@@ -91,7 +88,7 @@ def sum_sub_grid(grid, val):
             if grid[i][j] == val:
                 row, col = i, j
                 break
-    
+
     if row == -1 and col == -1:
         return 0
 
@@ -117,7 +114,7 @@ def main():
         dim += 1
     # create a 2-D list representing the spiral
     mat = create_spiral(dim)
-    
+
     while True:
         try:
             sum_val = int(input())
@@ -129,6 +126,7 @@ def main():
             print(adj_sum)
         except EOFError:
             break
+
 
 if __name__ == "__main__":
     main()
