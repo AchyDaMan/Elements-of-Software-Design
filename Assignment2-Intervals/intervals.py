@@ -24,7 +24,7 @@ def merge_tuples (tuples_list):
     tuples_list.sort()
     i = 1
     while i < len(tuples_list):
-        # if the upper boundary of the left interval is bigger than the left boundary of the 
+        # if the upper boundary of the left interval is bigger than the left boundary of the
         # right interval, they overlap
         if tuples_list[i-1][1] >= tuples_list[i][0]:
             # find which one is the smallest
