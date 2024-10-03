@@ -150,9 +150,8 @@ class Cube():
   # returns a Boolean
     def is_inside_cube(self, other):
          # implement here ...
-        #self.offset = abs(self.center.distance())
-         # return True 
-        return
+        self.offset = abs(self.center.distance(other.center))
+        return (self.offset+other.side/2) > self.side / 2
 
 # Implement this Method
 # Checks if two shapes, cubes or sphere have the same volume

@@ -30,21 +30,21 @@ class TestGeometry(unittest.TestCase):
 # create objects as needed in setup or other places 
 
     def test_002_point_equality(self):
-        # ... Implement here and remove pass 
         self.assertEqual(self.origin, self.origin)
         
     
     def test_003_sphere_area(self):
-        pass 
+        self.assertLessEqual(self.one_radius_sphere.area(), self.ten_radius_sphere.area()) 
 
     
-#     #TODO! Implement this 
-#     def test_004_sphere_volume(self):
-#         pass
+    def test_004_sphere_volume(self):
+        self.assertLessEqual(self.one_radius_sphere.volume(), self.ten_radius_sphere.volume())
 
 #     #TODO! Implement this 
-#     def test_005_sphere_is_inside_point(self):
-#         pass
+    def test_005_sphere_is_inside_point(self):
+        self.assertTrue(self.one_radius_sphere.is_inside_point(self.origin))
+        self.assertTrue(self.one_radius_sphere.is_inside_point(self.one_above_origin))
+        self.assertFalse(self.one_radius_sphere.is_inside_point(self.one_under_origin))
 
 
 #     #TODO! Implement this 
