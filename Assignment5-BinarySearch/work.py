@@ -13,15 +13,13 @@ def sum_series (v, k):
         lines += v // p
         p *= k
     return lines
-    
-
 
 # Input: n an integer representing  the total number of lines of code
 #        k an integer representing the productivity factor
 # Output: returns v the minimum lines of code to write using linear search
 def linear_search (n, k):
     v = 1
-    while sum_series(v, k) <= n:
+    while sum_series(v, k) < n:
         v += 1
 
     return v
@@ -43,38 +41,34 @@ def binary_search (n, k):
         its += 1
     
     return lower
-          
-
-
-
 
 def main():
-  # read number of cases
-  line = sys.stdin.readline()
-  line = line.strip()
-  num_cases = int(line)
-
-  for i in range (num_cases):
+    # read number of cases
     line = sys.stdin.readline()
     line = line.strip()
-    inp =  line.split()
-    n = int(inp[0])
-    k = int(inp[1])
+    num_cases = int(line)
 
-    start = time.time()
-    print("Binary Search: " + str(binary_search(n, k)))
-    finish = time.time()
-    print("Time: " + str(finish - start))
+    for i in range (num_cases):
+        line = sys.stdin.readline()
+        line = line.strip()
+        inp =  line.split()
+        n = int(inp[0])
+        k = int(inp[1])
+        start = time.time()
+        print("Binary Search: " + str(binary_search(n, k)))
+        finish = time.time()
+        print("Time: " + str(finish - start))
 
-    print()
+        print()
 
-    start = time.time()
-    print("Linear Search: " + str(linear_search(n, k)))
-    finish = time.time()
-    print("Time: " + str(finish - start))
-
-    print()
-    print()
+        start = time.time()
+        print("Linear Search: " + str(linear_search(n, k)))
+        finish = time.time()
+        print("Time: " + str(finish - start))
+        temp = i
+        i = temp
+        print()
+        print()
 
 if __name__ == "__main__":
   main()
